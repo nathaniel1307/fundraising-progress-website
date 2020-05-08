@@ -5,7 +5,7 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/outdoors-v11',
     center: [15, 48],
-    zoom: 3 // zoom range is 0 (the whole world) to 22 (street level)
+    zoom: 4.5 // zoom range is 0 (the whole world) to 22 (street level)
 });
 
 var distanceContainer = document.getElementById('distance');
@@ -54,7 +54,7 @@ map.on('load', function () {
         }
     }/*,'routeProgress'*/);  // placement of this line below the progress line layer
     
-    // destination marker
+    // destination marker- Blue
     map.loadImage("https://i.imgur.com/MK4NUzI.png", function (error, image) {
         if (error) throw error;
         map.addImage("finish-flag", image);
@@ -124,7 +124,7 @@ $(document).ready(function() {
                 }
             });
 
-            // Progress marker
+            // Progress marker- Red
             // Image: An image is loaded and added to the map.
             map.loadImage("https://img.icons8.com/color/48/000000/marker.png", function (error, image) {
                 if (error) throw error;
