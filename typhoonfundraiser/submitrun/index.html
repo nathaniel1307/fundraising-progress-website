@@ -28,16 +28,11 @@
             <form class="card" id="addrunform" action="">
                 <div class="row">
                     <div class="col-12 py-3 offset-md-1">
-                        <h2 id="addentryheading" class="font-weight-light">Add Entry for &ltloading UAS&gt</h2>
+                        <h2 id="addentryheading" class="font-weight-light">Add Entry for &ltloading Name&gt</h2>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-6 offset-md-1">
-                        <div class="form-group">
-                            <label for="runnersSelect">Select runner</label>
-                            <select class="form-control" id="runnersSelect" required>
-                            </select>
-                        </div>
                         <div class="form-group">
                             <label for="runDistanceInput">Distance Run (km)</label>
                             <input type="text" id="runDistanceInput" class="form-control" placeholder="e.g. 4.8" aria-label="Distance" aria-describedby="basic-addon2" required>
@@ -45,25 +40,6 @@
                         <button id="runsubmitbtn" type="submit" class="btn btn-primary btn-block mb-4">
                             Submit <span id="addrunspinner" class="spinner-border spinner-border-sm invisible" role="status" aria-hidden="true"></span>
                         </button>
-                    </div>
-                    <div class="col-sm-12 col-md-4">
-                        <!-- Add Runner -->
-                        <div class="card card-outline-secondary">
-                            <div class="card-body">
-                                <form class="form" role="form" autocomplete="off">
-                                    <div class="form-group">
-                                        <label for="runnerNameInput">Add New Runner</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" id="runnerNameInput" class="form-control" placeholder="Full name" aria-label="Full name" aria-describedby="basic-addon2">
-                                            <div class="input-group-append">
-                                                <button id="addrunnerbutton" class="btn btn-sm btn-primary" type="button">Add</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- /Add runner -->
                     </div>
                 </div>
             </form>
@@ -83,14 +59,12 @@
                             <thead>
                                 <tr>
                                     <th>Time</th>
-                                    <th>Runner</th>
                                     <th>Distance</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Time</th>
-                                    <th>Runner</th>
                                     <th>Distance</th>
                                 </tr>
                             </tfoot>
