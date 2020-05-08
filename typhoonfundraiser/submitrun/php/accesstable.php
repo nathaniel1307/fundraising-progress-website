@@ -17,10 +17,10 @@ $access_key = $_GET['access_key'];
 
 
 // DB credentials
-$host = '';
-$user = '';
-$pass = '';
-$db = '';
+$host = 'localhost';
+$user = 'root';
+$pass = 'root';
+$db = 'typhoonfundraiser';
 
 
 // Connect to database
@@ -39,7 +39,7 @@ if (isset($access_key)) {
         die("Wrong URL, access key: $access_key not found");
     } */
 }
-$sql = "SELECT tablename FROM accesskeys WHERE access_key='$key'"; // SQL with parameters
+$sql = "SELECT table_name FROM access_keys WHERE access_key='$key'"; // SQL with parameters
 $stmt = $mysqli->prepare($sql);
 if ($stmt==false) {
     die("Database access failed check your URL, access key: $access_key, sql error: $mysqli->error");
@@ -49,19 +49,19 @@ $stmt->execute(); // execute sql query
 $result = $stmt->get_result(); // get the mysqli result
 
 $row = $result->fetch_assoc();
-$tablename = $row["tablename"];
+$tablename = $row["table_name"];
 
 // DB request for runner data
 // Sanitise input
 if (isset($sortColIndex)) {
-    $acceptableSortValues = array('run_timestamp', 'runner_name', 'distance_km');
+    $acceptableSortValues = array('run_timestamp', 'run_distance');
     $sort = mysqli_real_escape_string($mysqli,$sortColData);
     if (!in_array($sortColData, $acceptableSortValues)) {
-        $sort = 'runner_name';
+        $sort = 'run_timestamp';
     }
 }
 else {
-    $sort = 'runner_name';
+    $sort = 'run_timestamp';
 }
 if (isset($sortOrder)) {
     if ($sortOrder == "asc") {
@@ -74,7 +74,7 @@ if (isset($sortOrder)) {
 else {
     $sortDir = 'ASC';
 }
-$sql = "SELECT run_timestamp, runner_name, distance_km FROM $tablename ORDER BY $sort $sortDir"; // SQL with parameters
+$sql = "SELECT run_timestamp, run_distance FROM $tablename ORDER BY $sort $sortDir"; // SQL with parameters
 $stmt = $mysqli->prepare($sql);
 if ($stmt==false) {
     die("Database access failed check your URL, access key: $access_key, sql error: $mysqli->error");

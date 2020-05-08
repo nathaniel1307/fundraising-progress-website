@@ -1,4 +1,4 @@
-// Script to handle populating datatables from mysql db and add run distances to db
+// Script to handle populating data tables from mysql db and add run distances to db
 $(document).ready(function() {
     var URL = window.location.href;
     const queryString = window.location.search;
@@ -24,8 +24,7 @@ $(document).ready(function() {
         },
         "columns": [
             { "data": "run_timestamp" },
-            { "data": "runner_name" },
-            { "data": "distance_km" }
+            { "data": "run_distance" }
         ]
     });
 });
@@ -36,16 +35,16 @@ $(document).ready(function() {
     const urlParams = new URLSearchParams(queryString);
     const access_key = urlParams.get('key');
 
-    $.ajax({    //create an ajax request to getUASdata.php
+    $.ajax({    //create an ajax request to getTeamdata.php
         type: "GET",
-        url: "./php/getUASdata.php",             
+        url: "./php/getTeamdata.php",
         dataType: "json",   //expect json to be returned
         data: { 
             access_key: access_key, 
         },                
         success: function(response){
-            $("#addentryheading").text("Add Entry for " + response.uasname); 
-            $("#distheading").text(response.uasname + " Distances Submitted"); 
+            $("#addentryheading").text("Add Entry for " + response.team_name);
+            $("#distheading").text(response.team_name + " Distances Submitted");
             //alert(response);
             // Add options
             $.each(response.runners, function(i, item) {
@@ -55,14 +54,6 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function() {
-    $("#addrunnerbutton").click(function(e) {
-        var newRunnerName = $("#runnerNameInput").val();
-        $("#runnersSelect").append('<option>' + newRunnerName + '</option>');
-        $("#runnersSelect").val(newRunnerName);
-        $("#runnersSelect").attr("disabled", true); 
-    });
-});
 
 $(document).ready(function() {
     // this is the id of the form
@@ -73,7 +64,6 @@ $(document).ready(function() {
         $('#addrunspinner').addClass('visible');
         $('#runsubmitbtn').prop('disabled', true);
 
-        var runnerName = $("#runnersSelect").val();
         var runDist = $("#runDistanceInput").val();
 
         var URL = window.location.href;
@@ -87,7 +77,6 @@ $(document).ready(function() {
             dataType: "html",   //expect json to be returned
             data: {
                 access_key: access_key,
-                name: runnerName, 
                 distance: runDist,
             },
             success: function(response){
@@ -96,7 +85,7 @@ $(document).ready(function() {
                 $('#runaddedalert').removeClass('hide');
                 $('#runaddedalert').addClass('show');
                 console.log(response);
-                console.log('logged run for: ' + response.run_name_raw);
+                console.log('logged run for: ' + response.team_name);
 
             }
         });

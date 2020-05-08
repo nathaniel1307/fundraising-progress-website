@@ -2,14 +2,13 @@
 // script to add run for a particular team
 
 $access_key = $_GET['access_key']; // Unique url to access particular db
-$run_name_raw = $_GET['name']; // runner's full name
 $run_dist_raw = $_GET['distance'];  // distance submitted
 
 // DB credentials
-$host = '';
-$user = '';
-$pass = '';
-$db = '';
+$host = 'localhost';
+$user = 'root';
+$pass = 'root';
+$db = 'typhoonfundraiser';
 
 // Connect to database
 $mysqli = new mysqli($host,$user,$pass,$db);
@@ -27,23 +26,18 @@ if (isset($access_key)) {
     //    die("Wrong URL, access key: $access_key not found");
     //}
 }
-$sql = "SELECT uas_name,tablename FROM accesskeys WHERE access_key='$key'"; // SQL with parameters
+$sql = "SELECT team_name,table_name FROM access_keys WHERE access_key='$key'"; // SQL with parameters
 $stmt = $mysqli->prepare($sql);
 $mysqli->error;
 $stmt->execute(); // execute sql query
 $result = $stmt->get_result(); // get the mysqli result
 
 $row = $result->fetch_assoc();
-$uasname = $row["uas_name"];
-$tablename = $row["tablename"];
+$teamname = $row["team_name"];
+$tablename = $row["table_name"];
 
 
 // DB request for inserting new run into db
-if (isset($run_name_raw)) {
-    $run_name = mysqli_real_escape_string($mysqli,$run_name_raw);
-} else {
-    die("Request invalid: run_name not found");
-}
 if (isset($run_dist_raw)) {
     $run_dist = mysqli_real_escape_string($mysqli,$run_dist_raw);
 } else {
@@ -53,21 +47,22 @@ if (isset($run_dist_raw)) {
 date_default_timezone_set('Europe/London');
 $datetimeObj = new DateTime('now');
 $timestr =  $datetimeObj->format('Y-m-d H:i:s');
-$stmt = $mysqli->prepare("INSERT INTO $tablename(run_timestamp,runner_name,distance_km) VALUES ('$timestr','$run_name',$run_dist)");
+$stmt = $mysqli->prepare("INSERT INTO $tablename(run_timestamp,run_distance) VALUES ('$timestr','$run_dist')");
+$mysqli->error;
 $stmt->execute();
 $stmt->close();
 
 // Assemble response
 $response = array(
-    "uasname" => $uasname,
-    "run_name_raw" => $run_name_raw,
+    "team_name" => $teamname,
+
     "run_dist_raw" => $run_dist_raw
 ); 
 echo json_encode($response);
 
 
 // CALCULATE NEW TOTAL
-$sql = "SELECT SUM(distance_km) as sumdist FROM $tablename";
+$sql = "SELECT SUM(run_distance) as sumdist FROM $tablename";
 $stmt = $mysqli->prepare($sql);
 $stmt->execute(); // execute sql query
 $result = $stmt->get_result(); // get the mysqli result
@@ -76,7 +71,7 @@ $row = $result->fetch_assoc();
 $sumdist = round($row["sumdist"], 3);
 
 // UPDATE TOTAL
-$sql = "UPDATE total_distances SET distance=$sumdist WHERE UAS='$uasname'";
+$sql = "UPDATE total_distances SET distance=$sumdist WHERE team='$teamname'";
 if ($mysqli->query($sql) === TRUE) {
     //echo "Record updated successfully";
 } else {

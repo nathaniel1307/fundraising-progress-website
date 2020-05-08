@@ -5,10 +5,10 @@
 $access_key = $_GET['access_key'];
 
 // DB credentials
-$host = '';
-$user = '';
-$pass = '';
-$db = '';
+$host = 'localhost';
+$user = 'root';
+$pass = 'root';
+$db = 'typhoonfundraiser';
 //$table = 'testdb';
 
 
@@ -28,17 +28,17 @@ if (isset($access_key)) {
     //    die("Wrong URL, access key: $access_key not found");
     //}
 }
-$sql = "SELECT uas_name,tablename FROM accesskeys WHERE access_key='$key'"; // SQL with parameters
+$sql = "SELECT team_name,table_name FROM access_keys WHERE access_key='$key'"; // SQL with parameters
 $stmt = $mysqli->prepare($sql);
 $mysqli->error;
 $stmt->execute(); // execute sql query
 $result = $stmt->get_result(); // get the mysqli result
 
 $row = $result->fetch_assoc();
-$uasname = $row["uas_name"];
-$tablename = $row["tablename"];
+$teamname = $row["team_name"];
+$tablename = $row["table_name"];
 
-
+/*
 // DB request for runner data
 $sql = "SELECT DISTINCT runner_name FROM $tablename ORDER BY runner_name ASC"; // SQL with parameters
 $stmt = $mysqli->prepare($sql);
@@ -50,12 +50,11 @@ $result = $stmt->get_result(); // get the mysqli result
 
 $runners = $result->fetch_all(MYSQLI_ASSOC);
 $rowsReturned = $result->num_rows;
-
+*/
 
 // Assemble response
 $response = array(
-    "uasname" => $uasname,
-    "runners" => $runners
+    "team_name" => $teamname,
 );
 
 echo json_encode($response);
