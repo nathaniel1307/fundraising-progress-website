@@ -23,9 +23,9 @@ $(document).ready(function() {
             }
         },
         "columns": [
-            { "data": "run_timestamp" },
+            { "data": "timestamp" },
             { "data": "runner_name" },
-            { "data": "distance_km" }
+            { "data": "distance" }
         ]
     });
 });
