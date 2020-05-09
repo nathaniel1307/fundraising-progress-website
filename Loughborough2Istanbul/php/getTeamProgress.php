@@ -1,5 +1,5 @@
 <?php
-// script to get distance run by each UAS so far (for leaderboard)
+// script to get distance run by each Team so far (for leaderboard)
 
 // DB credentials
 $host = 'localhost';
@@ -24,7 +24,7 @@ $data = $result->fetch_all(MYSQLI_ASSOC);
 
 // Assemble response
 $response = array(
-    "data" => $data // UAS and distance data
+    "data" => $data // Team and distance data
 ); 
 echo json_encode($response);
 
