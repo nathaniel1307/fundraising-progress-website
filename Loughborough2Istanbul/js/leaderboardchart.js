@@ -1,35 +1,28 @@
-
-/* Should I use this?
-jQuery(document).ready(function($) {
-
-} */
-
-
 $(document).ready(function() {
     var ctx = document.getElementById('leaderboardChart');
-    
-    // AJAX request to get each UAS' progress
+
+    // AJAX request to get each Teams progress
     $.ajax({    //create an ajax request to getProgress.php
         type: "GET",
-        url: "./php/getUASProgress.php",             
+        url: "./php/getTeamProgress.php",
         dataType: "json",   //expect json to be returned
-        data: { 
+        data: {
             //access_key: access_key, 
-        },                
+        },
         success: function(response){
             //alert(response.totaldist);
-            //console.log(response.data) // array of UASs and distances (data.UAS, and data.distance respectively)
-            var UAS_arr = [];
+            //console.log(response.data) // array of Teams and distances (data.UAS, and data.distance respectively)
+            var Teams_arr = [];
             var dist_arr = [];
             response.data.forEach(function(dat) {
-                UAS_arr.push(dat.UAS);
+                Teams_arr.push(dat.team);
                 dist_arr.push(dat.distance);
             });
-            
+
             var myChart = new Chart(ctx, {
                 type: 'horizontalBar',
                 data: {
-                    labels: UAS_arr,
+                    labels: Teams_arr,
                     datasets: [{
                         label: 'km run',
                         data: dist_arr,
