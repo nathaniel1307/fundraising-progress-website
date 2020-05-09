@@ -18,7 +18,7 @@ $(document).ready(function() {
         },                
         success: function(response){
             //alert(response.totaldist);
-            console.log(response.data) // array of Teams and distances (data.UAS, and data.distance respectively)
+            //console.log(response.data) // array of Teams and distances (data.UAS, and data.distance respectively)
             var Teams_arr = [];
             var dist_arr = [];
             response.data.forEach(function(dat) {
