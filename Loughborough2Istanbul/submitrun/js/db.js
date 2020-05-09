@@ -36,9 +36,9 @@ $(document).ready(function() {
     const urlParams = new URLSearchParams(queryString);
     const access_key = urlParams.get('key');
 
-    $.ajax({    //create an ajax request to getUASdata.php
+    $.ajax({    //create an ajax request to getTeamdata.php
         type: "GET",
-        url: "./php/getUASdata.php",             
+        url: "./php/getTeamdata.php",
         dataType: "json",   //expect json to be returned
         data: { 
             access_key: access_key, 
