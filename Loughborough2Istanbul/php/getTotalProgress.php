@@ -2,10 +2,10 @@
 // script to get total distance run so far
 
 // DB credentials
-$host = '';
-$user = '';
-$pass = '';
-$db = '';
+$host = 'localhost';
+$user = 'root';
+$pass = 'root';
+$db = 'Loughborough2Istanbul';
 
 // Connect to database
 $mysqli = new mysqli($host,$user,$pass,$db);
@@ -26,7 +26,7 @@ $totaldist = round($row["total"], 1);
 // Assemble response
 $response = array(
     "totaldist" => $totaldist
-); 
+);
 echo json_encode($response);
 
 $result->close();
