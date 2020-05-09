@@ -4,7 +4,7 @@
 // DB credentials
 $host = 'localhost';
 $user = 'root';
-$pass = '';
+$pass = 'root';
 $db = 'typhoonfundraiser';
 
 // Connect to database
