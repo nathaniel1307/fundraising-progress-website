@@ -153,14 +153,14 @@ $(document).ready(function() {
             'Progress: ' +
             response.totaldist.toLocaleString() + 
             'km';
-            /* with total included (the "X/5,200km" bit)
+            //with total included (the "X/5,200km" bit)
             var value = document.createElement('pre');
             value.textContent =
             'Progress: ' +
             response.totaldist + '/' +
             Math.round(turf.length(line)).toLocaleString() +
             'km';
-            */
+
             distanceContainer.appendChild(value);
             // var length = turf.length(line, {units: 'miles'});
         }
