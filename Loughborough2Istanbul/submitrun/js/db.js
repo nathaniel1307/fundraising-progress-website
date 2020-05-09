@@ -44,8 +44,8 @@ $(document).ready(function() {
             access_key: access_key, 
         },                
         success: function(response){
-            $("#addentryheading").text("Add Entry for " + response.uasname); 
-            $("#distheading").text(response.uasname + " Distances Submitted"); 
+            $("#addentryheading").text("Add Entry for " + response.teamname);
+            $("#distheading").text(response.teamname + " Distances Submitted");
             //alert(response);
             // Add options
             $.each(response.runners, function(i, item) {
