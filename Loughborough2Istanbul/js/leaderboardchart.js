@@ -11,7 +11,7 @@ $(document).ready(function() {
         },
         success: function(response){
             //alert(response.totaldist);
-            //console.log(response.data) // array of Teams and distances (data.UAS, and data.distance respectively)
+            //console.log(response.data) // array of Teams and distances (data.team, and data.distance respectively)
             var Teams_arr = [];
             var dist_arr = [];
             response.data.forEach(function(dat) {
@@ -26,7 +26,7 @@ $(document).ready(function() {
                     datasets: [{
                         label: 'km run',
                         data: dist_arr,
-                        backgroundColor: 'rgba(12, 100, 187)',
+                        backgroundColor: ["purple", "red", "grey"],
                         barPercentage: 0.7
                     }]
                 },
