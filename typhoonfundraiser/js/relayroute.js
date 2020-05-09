@@ -52,7 +52,7 @@ map.on('load', function () {
             'line-color': '#0C7CBB',
             'line-width': 7
         }
-    }/*,'routeProgress'*/);  // placement of this line below the progress line layer
+    },'routeProgress');  // placement of this line below the progress line layer
     
     // destination marker- Blue
     map.loadImage("https://i.imgur.com/MK4NUzI.png", function (error, image) {
