@@ -2,10 +2,10 @@
 // script to get distance run by each UAS so far (for leaderboard)
 
 // DB credentials
-$host = '';
-$user = '';
-$pass = '';
-$db = '';
+$host = 'localhost';
+$user = 'root';
+$pass = 'root';
+$db = 'Loughborough2Istanbul';
 
 // Connect to database
 $mysqli = new mysqli($host,$user,$pass,$db);
@@ -15,7 +15,7 @@ if ($mysqli->connect_errno) {
     exit();
 }
 
-$sql = "SELECT UAS,distance FROM total_distances ORDER BY distance DESC";
+$sql = "SELECT team,distance FROM total_distances ORDER BY distance DESC";
 $stmt = $mysqli->prepare($sql);
 $stmt->execute(); // execute sql query
 $result = $stmt->get_result(); // get the mysqli result
