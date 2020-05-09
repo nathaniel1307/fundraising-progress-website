@@ -1,10 +1,3 @@
-
-/* Should I use this?
-jQuery(document).ready(function($) {
-
-} */
-
-
 $(document).ready(function() {
     var ctx = document.getElementById('leaderboardChart');
     
