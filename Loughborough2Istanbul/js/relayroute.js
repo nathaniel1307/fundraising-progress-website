@@ -96,9 +96,21 @@ $(document).ready(function() {
         success: function (response) {
             var Teams_arr = [];
             var dist_arr = [];
+            var colour_arr = [];
             response.data.forEach(function (dat) {
                 Teams_arr.push(dat.team);
                 dist_arr.push(dat.distance);
+                //Colour Setting
+                if(dat.team === "Typhoon Squadron"){
+                    colour_arr.push("purple");
+                }else if (dat.team === "Home"){
+                    colour_arr.push("red");
+                }else if (dat.team === "Other"){
+                    colour_arr.push("yellow");
+                }else{
+                    colour_arr.push("grey");
+                }
+
             });
 
             //alert(response.totaldist);
@@ -125,7 +137,7 @@ $(document).ready(function() {
                     'line-cap': 'round'
                 },
                 'paint': {
-                    'line-color': 'purple',
+                    'line-color': colour_arr[0],
                     'line-width': 5
                 }
             });
@@ -176,7 +188,7 @@ $(document).ready(function() {
                     'line-cap': 'round'
                 },
                 'paint': {
-                    'line-color': 'red',
+                    'line-color': colour_arr[1],
                     'line-width': 5
                 }
             });
@@ -231,7 +243,7 @@ $(document).ready(function() {
                     'line-cap': 'round'
                 },
                 'paint': {
-                    'line-color': 'yellow',
+                    'line-color': colour_arr[2],
                     'line-width': 5
                 }
             });
@@ -243,17 +255,17 @@ $(document).ready(function() {
 
 
             // Populate the distanceContainer with total distance
-            var value = document.createElement('pre');
+            /*var value = document.createElement('pre');
             value.textContent =
-            'Team 1 Progress: ' +
+            Teams_arr[0] + ' Progress: ' +
             team1DistAlongRoute.toLocaleString() +
-            'km';
+            'km';*/
+            var totalDistString = "/" + Math.round(turf.length(line)).toLocaleString() + 'km'
+
             var value = document.createElement('pre');
-            value.textContent =
-            'Team 1 Progress: ' +
-            team1DistAlongRoute + '/' +
-            Math.round(turf.length(line)).toLocaleString() +
-            'km' + "BREAK" + team2DistAlongRoute + "BREAK" + team3DistAlongRoute;
+            value.textContent = Teams_arr[0] + ' Progress: ' + team1DistAlongRoute + totalDistString + "\n\n"
+                + Teams_arr[1] + ' Progress: ' + team2DistAlongRoute + totalDistString + "\n\n"
+                + Teams_arr[2] + ' Progress: ' + team3DistAlongRoute + totalDistString
 
             distanceContainer.appendChild(value);
             // var length = turf.length(line, {units: 'miles'});
