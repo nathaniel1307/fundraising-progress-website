@@ -49,10 +49,10 @@ map.on('load', function () {
             'line-cap': 'round'
         },
         'paint': {
-            'line-color': '#0C7CBB',
-            'line-width': 7
+            'line-color': '#000000',
+            'line-width': 3
         }
-    },'routeProgress');  // placement of this line below the progress line layer
+    },"team1RouteProgress");  // placement of this line below the progress line layer
     
     // destination marker
     map.loadImage("https://i.imgur.com/MK4NUzI.png", function (error, image) {
@@ -86,79 +86,174 @@ $(document).ready(function() {
     var options = {units: 'kilometers'};
 
 
-    // AJAX request to get progress
-    $.ajax({    //create an ajax request to getTotalProgress.php
+    $.ajax({    //create an ajax request to getProgress.php
         type: "GET",
-        url: "./php/getTotalProgress.php",             
+        url: "./php/getTeamProgress.php",
         dataType: "json",   //expect json to be returned
         data: {
-            //access_key: access_key, 
-        },                
-        success: function(response){
+            //access_key: access_key,
+        },
+        success: function (response) {
+            var Teams_arr = [];
+            var dist_arr = [];
+            response.data.forEach(function (dat) {
+                Teams_arr.push(dat.team);
+                dist_arr.push(dat.distance);
+            });
+
             //alert(response.totaldist);
             var distStart = 0;
-            var distAlongRoute = response.totaldist;
 
-            var along = turf.along(line, distAlongRoute, options);
-
-            if (response.totaldist<0.1) {
-                distAlongRoute = 0.1; // prevent error in lineSliceAlong if dist = 0
+            //Team 1
+            var team1DistAlongRoute = dist_arr[0]
+            var team1Along = turf.along(line, team1DistAlongRoute, options);
+            if (team1DistAlongRoute<0.1) {
+                team1DistAlongRoute = 0.1; // prevent error in lineSliceAlong if dist = 0
             }
-            var sliceLine = turf.lineSliceAlong(line, distStart, distAlongRoute, {units: 'kilometers'});
+            var team1SliceLine = turf.lineSliceAlong(line, distStart, team1DistAlongRoute, {units: 'kilometers'});
 
-            map.addSource('progress-source', {
+            map.addSource('team1progress-source', {
                 'type': 'geojson',
-                'data': sliceLine
+                'data': team1SliceLine
             });
             map.addLayer({
-                'id': 'routeProgress',
+                'id': 'team1RouteProgress',
                 'type': 'line',
-                'source': 'progress-source',
+                'source': 'team1progress-source',
                 'layout': {
                     'line-join': 'round',
                     'line-cap': 'round'
                 },
                 'paint': {
-                    'line-color': '#d42202',
-                    'line-width': 8
+                    'line-color': 'purple',
+                    'line-width': 5
                 }
             });
 
-            // Progress marker- Red
+            // Progress marker- Purple
             // Image: An image is loaded and added to the map.
-            map.loadImage("https://img.icons8.com/color/48/000000/marker.png", function (error, image) {
+
+            map.loadImage("./assets/black.png", function (error, image) {
                 if (error) throw error;
-                map.addImage("custom-marker", image);
+                map.addImage("team1custom-marker", image);
                 map.addSource('geojson', {
                     'type': 'geojson',
                     'data': geojson
                 });
                 map.addLayer({
-                    id: 'progress',
+                    id: 'team1Progress',
                     type: 'symbol',
                     source: 'geojson',
                     layout: {
-                        "icon-image": "custom-marker",
+                        "icon-image": "team1custom-marker",
                         'icon-anchor': "bottom"
                     }
                 });
             });
 
-            geojson.features.push(along);
-            progressLine.features.push(sliceLine);
+            geojson.features.push(team1Along);
+            progressLine.features.push(team1SliceLine);
+
+            //Team 2
+
+            var team2DistAlongRoute = dist_arr[1]
+            var team2Along = turf.along(line, team2DistAlongRoute, options);
+            if (team2DistAlongRoute<0.1) {
+                team2DistAlongRoute = 0.1; // prevent error in lineSliceAlong if dist = 0
+            }
+            var team2SliceLine = turf.lineSliceAlong(line, distStart, team2DistAlongRoute, {units: 'kilometers'});
+
+            map.addSource('team2progress-source', {
+                'type': 'geojson',
+                'data': team2SliceLine
+            });
+            map.addLayer({
+                'id': 'team2RouteProgress',
+                'type': 'line',
+                'source': 'team2progress-source',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': 'red',
+                    'line-width': 5
+                }
+            });
+/*
+            // Progress marker- Red
+            // Image: An image is loaded and added to the map.
+            map.loadImage("./assets/red.png", function (error, image2) {
+                if (error) throw error;
+                map.addImage("team2custom-marker", image2);
+                map.addSource('geojson', {
+                    'type': 'geojson',
+                    'data': geojson
+                });
+                map.addLayer({
+                    id: 'team2Progress',
+                    type: 'symbol',
+                    source: 'geojson',
+                    layout: {
+                        "icon-image": "team2custom-marker",
+                        'icon-anchor': "bottom"
+                    }
+                });
+            });
+*/
+            geojson.features.push(team2Along);
+            progressLine.features.push(team2SliceLine);
+
+
+
+
+
+
+            //Team 3
+
+            var team3DistAlongRoute = dist_arr[2]
+            var team3Along = turf.along(line, team3DistAlongRoute, options);
+            if (team3DistAlongRoute<0.1) {
+                team3DistAlongRoute = 0.1; // prevent error in lineSliceAlong if dist = 0
+            }
+            var team3SliceLine = turf.lineSliceAlong(line, distStart, team3DistAlongRoute, {units: 'kilometers'});
+
+            map.addSource('team3progress-source', {
+                'type': 'geojson',
+                'data': team3SliceLine
+            });
+            map.addLayer({
+                'id': 'team3RouteProgress',
+                'type': 'line',
+                'source': 'team3progress-source',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': 'yellow',
+                    'line-width': 5
+                }
+            });
+            geojson.features.push(team3Along);
+            progressLine.features.push(team3SliceLine);
+
+
+
+
 
             // Populate the distanceContainer with total distance
             var value = document.createElement('pre');
             value.textContent =
-            'Progress: ' +
-            response.totaldist.toLocaleString() + 
+            'Team 1 Progress: ' +
+            team1DistAlongRoute.toLocaleString() +
             'km';
             var value = document.createElement('pre');
             value.textContent =
-            'Progress: ' +
-            response.totaldist + '/' +
+            'Team 1 Progress: ' +
+            team1DistAlongRoute + '/' +
             Math.round(turf.length(line)).toLocaleString() +
-            'km';
+            'km' + "BREAK" + team2DistAlongRoute + "BREAK" + team3DistAlongRoute;
 
             distanceContainer.appendChild(value);
             // var length = turf.length(line, {units: 'miles'});
