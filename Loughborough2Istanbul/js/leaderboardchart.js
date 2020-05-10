@@ -26,7 +26,7 @@ $(document).ready(function() {
                     datasets: [{
                         label: 'km run',
                         data: dist_arr,
-                        backgroundColor: ["purple", "red", "grey"],
+                        backgroundColor: ["purple", "red", "yellow"],
                         barPercentage: 0.7
                     }]
                 },
