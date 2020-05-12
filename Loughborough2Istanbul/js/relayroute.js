@@ -4,7 +4,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibmF0aGFuaWVsMTMwNyIsImEiOiJjazl5NmI0cG0wbGw5M
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/outdoors-v11',
-    center: [15, 50],
+    center: [5, 50],
     zoom: 4 // zoom range is 0 (the whole world) to 22 (street level)
 });
 
@@ -100,24 +100,29 @@ $(document).ready(function() {
             response.data.forEach(function (dat) {
                 Teams_arr.push(dat.team);
                 dist_arr.push(dat.distance);
+
                 //Colour Setting
                 if(dat.team === "Typhoon Squadron"){
-                    colour_arr.push("purple");
-                }else if (dat.team === "Gloucester Penguins; for Ben"){
+                    colour_arr.push("darkviolet");
+                }else if (dat.team === "Gloucester Penguins"){
                     colour_arr.push("red");
-                }else if (dat.team === "Community"){
+                }else if (dat.team === "Friends & Family"){
                     colour_arr.push("yellow");
                 }else if(dat.team === "HMS Grimsby"){
                     colour_arr.push("navy");
                 }else if(dat.team === "Thunderer Squadron"){
-                    colour_arr.push("blue");
+                    colour_arr.push("darkturquoise");
+                }else if(dat.team === "Taurus Squadron"){
+                    colour_arr.push("green");
+                }else if(dat.team === "Trojan Squadron"){
+                    colour_arr.push("darkorange")
+                }else if(dat.team === "Worldline & Friends"){
+                    colour_arr.push("deepskyblue")
                 }else{
                     colour_arr.push("grey");
                 }
-
             });
 
-            //alert(response.totaldist);
             var distStart = 0;
 
             //Team 1
@@ -295,7 +300,97 @@ $(document).ready(function() {
             progressLine.features.push(team5SliceLine);
 
 
+            //Team 6
 
+            var team6DistAlongRoute = dist_arr[5]
+            var team6Along = turf.along(line, team6DistAlongRoute, options);
+            if (team6DistAlongRoute<0.1) {
+                team6DistAlongRoute = 0.1; // prevent error in lineSliceAlong if dist = 0
+            }
+            var team6SliceLine = turf.lineSliceAlong(line, distStart, team6DistAlongRoute, {units: 'kilometers'});
+
+            map.addSource('team6progress-source', {
+                'type': 'geojson',
+                'data': team6SliceLine
+            });
+            map.addLayer({
+                'id': 'team6RouteProgress',
+                'type': 'line',
+                'source': 'team6progress-source',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': colour_arr[5],
+                    'line-width': 5
+                }
+            });
+
+            geojson.features.push(team6Along);
+            progressLine.features.push(team6SliceLine);
+
+
+            //Team 7
+
+            var team7DistAlongRoute = dist_arr[6]
+            var team7Along = turf.along(line, team7DistAlongRoute, options);
+            if (team7DistAlongRoute<0.1) {
+                team7DistAlongRoute = 0.1; // prevent error in lineSliceAlong if dist = 0
+            }
+            var team7SliceLine = turf.lineSliceAlong(line, distStart, team7DistAlongRoute, {units: 'kilometers'});
+
+            map.addSource('team7progress-source', {
+                'type': 'geojson',
+                'data': team7SliceLine
+            });
+            map.addLayer({
+                'id': 'team7RouteProgress',
+                'type': 'line',
+                'source': 'team7progress-source',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': colour_arr[6],
+                    'line-width': 5
+                }
+            });
+
+            geojson.features.push(team7Along);
+            progressLine.features.push(team7SliceLine);
+
+
+            //Team 8
+
+            var team8DistAlongRoute = dist_arr[7]
+            var team8Along = turf.along(line, team8DistAlongRoute, options);
+            if (team8DistAlongRoute<0.1) {
+                team8DistAlongRoute = 0.1; // prevent error in lineSliceAlong if dist = 0
+            }
+            var team8SliceLine = turf.lineSliceAlong(line, distStart, team8DistAlongRoute, {units: 'kilometers'});
+
+            map.addSource('team8progress-source', {
+                'type': 'geojson',
+                'data': team8SliceLine
+            });
+            map.addLayer({
+                'id': 'team8RouteProgress',
+                'type': 'line',
+                'source': 'team8progress-source',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': colour_arr[7],
+                    'line-width': 5
+                }
+            });
+
+            geojson.features.push(team8Along);
+            progressLine.features.push(team8SliceLine);
 
 
 
@@ -313,8 +408,13 @@ $(document).ready(function() {
                 + Teams_arr[2] + ' Progress: ' + team3DistAlongRoute + totalDistString + "\n\n"
                 + Teams_arr[3] + ' Progress: ' + team4DistAlongRoute + totalDistString + "\n\n"
                 + Teams_arr[4] + ' Progress: ' + team5DistAlongRoute + totalDistString + "\n\n"
+                + Teams_arr[5] + ' Progress: ' + team6DistAlongRoute + totalDistString + "\n\n"
+                + Teams_arr[6] + ' Progress: ' + team7DistAlongRoute + totalDistString + "\n\n"
+                + Teams_arr[7] + ' Progress: ' + team8DistAlongRoute + totalDistString + "\n\n"
 
             distanceContainer.appendChild(value);
+
+
             // var length = turf.length(line, {units: 'miles'});
         }
     });
