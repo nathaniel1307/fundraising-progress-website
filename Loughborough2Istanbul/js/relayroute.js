@@ -96,9 +96,13 @@ $(document).ready(function() {
                 }else if(dat.team === "Taurus Squadron"){
                     colour_arr.push("green");
                 }else if(dat.team === "Trojan Squadron"){
-                    colour_arr.push("darkorange")
+                    colour_arr.push("magenta")
                 }else if(dat.team === "Worldline & Friends"){
                     colour_arr.push("deepskyblue")
+                }else if(dat.team === "Looseheadz"){
+                    colour_arr.push("springgreen");
+                }else if(dat.team === "Crypt Runners"){
+                    colour_arr.push("darkorange");
                 }else{
                     colour_arr.push("grey");
                 }
@@ -370,6 +374,69 @@ $(document).ready(function() {
             progressLine.features.push(team8SliceLine);
 
 
+            //Team 9 Progress Line
+
+            var team9DistAlongRoute = dist_arr[8]
+            var team9Along = turf.along(line, team9DistAlongRoute, options);
+            if (team9DistAlongRoute<0.1) {
+                team9DistAlongRoute = 0.1; // prevent error in lineSliceAlong if dist = 0
+            }
+            var team9SliceLine = turf.lineSliceAlong(line, distStart, team9DistAlongRoute, {units: 'kilometers'});
+
+            map.addSource('team9progress-source', {
+                'type': 'geojson',
+                'data': team9SliceLine
+            });
+            map.addLayer({
+                'id': 'team9RouteProgress',
+                'type': 'line',
+                'source': 'team9progress-source',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': colour_arr[8],
+                    'line-width': 5
+                }
+            });
+
+            geojson.features.push(team9Along);
+            progressLine.features.push(team9SliceLine);
+
+
+            //Team 10 Progress Line
+
+            var team10DistAlongRoute = dist_arr[9]
+            var team10Along = turf.along(line, team10DistAlongRoute, options);
+            if (team10DistAlongRoute<0.1) {
+                team10DistAlongRoute = 0.1; // prevent error in lineSliceAlong if dist = 0
+            }
+            var team10SliceLine = turf.lineSliceAlong(line, distStart, team10DistAlongRoute, {units: 'kilometers'});
+
+            map.addSource('team10progress-source', {
+                'type': 'geojson',
+                'data': team10SliceLine
+            });
+            map.addLayer({
+                'id': 'team10RouteProgress',
+                'type': 'line',
+                'source': 'team10progress-source',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': colour_arr[9],
+                    'line-width': 5
+                }
+            });
+
+            geojson.features.push(team10Along);
+            progressLine.features.push(team10SliceLine);
+
+
+
             // Populating top left distance container with each teams progress in KM
             var totalDistString = "/" + Math.round(turf.length(line)).toLocaleString() + 'km'
 
@@ -382,6 +449,8 @@ $(document).ready(function() {
                 + Teams_arr[5] + ' Progress: ' + team6DistAlongRoute + totalDistString + "\n\n"
                 + Teams_arr[6] + ' Progress: ' + team7DistAlongRoute + totalDistString + "\n\n"
                 + Teams_arr[7] + ' Progress: ' + team8DistAlongRoute + totalDistString + "\n\n"
+                + Teams_arr[8] + ' Progress: ' + team9DistAlongRoute + totalDistString + "\n\n"
+                + Teams_arr[9] + ' Progress: ' + team10DistAlongRoute + totalDistString
 
             distanceContainer.appendChild(value);
         }

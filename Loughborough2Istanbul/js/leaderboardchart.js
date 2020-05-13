@@ -31,9 +31,13 @@ $(document).ready(function() {
                 }else if(dat.team === "Taurus Squadron"){
                     colour_arr.push("green");
                 }else if(dat.team === "Trojan Squadron"){
-                    colour_arr.push("darkorange")
+                    colour_arr.push("magenta")
                 }else if(dat.team === "Worldline & Friends"){
                     colour_arr.push("deepskyblue")
+                }else if(dat.team === "Looseheadz"){
+                    colour_arr.push("springgreen");
+                }else if(dat.team === "Crypt Runners"){
+                    colour_arr.push("darkorange");
                 }else{
                     colour_arr.push("grey");
                 }
