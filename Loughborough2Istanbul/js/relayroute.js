@@ -1,4 +1,4 @@
-// storing route separately so as to not clutter other JS files
+//Map Setup
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibmF0aGFuaWVsMTMwNyIsImEiOiJjazl5NmI0cG0wbGw5M2dwa25ya2h2OWdjIn0.o6fdAfo_7e13XEpV1IPyOA';  // insert mapbox access token here
 var map = new mapboxgl.Map({
@@ -8,6 +8,7 @@ var map = new mapboxgl.Map({
     zoom: 4 // zoom range is 0 (the whole world) to 22 (street level)
 });
 
+//Top Left Container on map overlay
 var distanceContainer = document.getElementById('distance');
     
 // GeoJSON object to hold our measurement features
@@ -38,8 +39,7 @@ map.on('load', function () {
     });
 
     // Add styles to the map. Style layer: A style layer ties together the source and image and specifies how they are displayed on the map.
-    // 'line-color': '#0C7CBB', // dark cyan
-    // NHS blue: 005EB8
+    // Adds the main route in black
     map.addLayer({
         'id': 'route',
         'type': 'line',
@@ -52,31 +52,12 @@ map.on('load', function () {
             'line-color': '#000000',
             'line-width': 3
         }
-    },"team1RouteProgress");  // placement of this line below the progress line layer
-    
-    // destination marker
-    map.loadImage("https://i.imgur.com/MK4NUzI.png", function (error, image) {
-        if (error) throw error;
-        map.addImage("finish-flag", image);
-        map.addSource('finish-source', {
-            'type': 'geojson',
-            'data': finishPoint
-        }); 
-        map.addLayer({
-            id: 'finish',
-            type: 'symbol',
-            source: 'finish-source',
-            layout: {
-                "icon-image": "finish-flag",
-                'icon-anchor': "bottom"
-            }
-        });
-    }); 
+    },"team1RouteProgress");  // placement of this line below the progress line layers
     
     finishPoint.features.push(endPoint);
-    //map.getSource('geojson').setData(geojson);
-    
 });
+
+
 
 $(document).ready(function() {
     // Clear the Distance container to populate it with a new value
@@ -125,7 +106,7 @@ $(document).ready(function() {
 
             var distStart = 0;
 
-            //Team 1
+            //Team 1 Progress Line
             var team1DistAlongRoute = dist_arr[0]
             var team1Along = turf.along(line, team1DistAlongRoute, options);
             if (team1DistAlongRoute<0.1) {
@@ -151,7 +132,7 @@ $(document).ready(function() {
                 }
             });
 
-            // Progress marker- Purple
+            // Progress markers for all the teams
             // Image: An image is loaded and added to the map.
 
             map.loadImage("./assets/black.png", function (error, image) {
@@ -175,7 +156,7 @@ $(document).ready(function() {
             geojson.features.push(team1Along);
             progressLine.features.push(team1SliceLine);
 
-            //Team 2
+            //Team 2 Progress Line
 
             var team2DistAlongRoute = dist_arr[1]
             var team2Along = turf.along(line, team2DistAlongRoute, options);
@@ -206,11 +187,7 @@ $(document).ready(function() {
             progressLine.features.push(team2SliceLine);
 
 
-
-
-
-
-            //Team 3
+            //Team 3 Progress Line
 
             var team3DistAlongRoute = dist_arr[2]
             var team3Along = turf.along(line, team3DistAlongRoute, options);
@@ -240,7 +217,7 @@ $(document).ready(function() {
             progressLine.features.push(team3SliceLine);
 
 
-            //Team 4
+            //Team 4 Progress Line
 
             var team4DistAlongRoute = dist_arr[3]
             var team4Along = turf.along(line, team4DistAlongRoute, options);
@@ -270,7 +247,7 @@ $(document).ready(function() {
             progressLine.features.push(team4SliceLine);
 
 
-            //Team 5
+            //Team 5 Progress Line
 
             var team5DistAlongRoute = dist_arr[4]
             var team5Along = turf.along(line, team5DistAlongRoute, options);
@@ -300,7 +277,7 @@ $(document).ready(function() {
             progressLine.features.push(team5SliceLine);
 
 
-            //Team 6
+            //Team 6 Progress Line
 
             var team6DistAlongRoute = dist_arr[5]
             var team6Along = turf.along(line, team6DistAlongRoute, options);
@@ -331,7 +308,7 @@ $(document).ready(function() {
             progressLine.features.push(team6SliceLine);
 
 
-            //Team 7
+            //Team 7 Progress Line
 
             var team7DistAlongRoute = dist_arr[6]
             var team7Along = turf.along(line, team7DistAlongRoute, options);
@@ -362,7 +339,7 @@ $(document).ready(function() {
             progressLine.features.push(team7SliceLine);
 
 
-            //Team 8
+            //Team 8 Progress Line
 
             var team8DistAlongRoute = dist_arr[7]
             var team8Along = turf.along(line, team8DistAlongRoute, options);
@@ -393,13 +370,7 @@ $(document).ready(function() {
             progressLine.features.push(team8SliceLine);
 
 
-
-            // Populate the distanceContainer with total distance
-            /*var value = document.createElement('pre');
-            value.textContent =
-            Teams_arr[0] + ' Progress: ' +
-            team1DistAlongRoute.toLocaleString() +
-            'km';*/
+            // Populating top left distance container with each teams progress in KM
             var totalDistString = "/" + Math.round(turf.length(line)).toLocaleString() + 'km'
 
             var value = document.createElement('pre');
@@ -413,9 +384,6 @@ $(document).ready(function() {
                 + Teams_arr[7] + ' Progress: ' + team8DistAlongRoute + totalDistString + "\n\n"
 
             distanceContainer.appendChild(value);
-
-
-            // var length = turf.length(line, {units: 'miles'});
         }
     });
 });

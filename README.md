@@ -1,5 +1,5 @@
 # fundraising-progress-website
-A website for displaying the progress along a route and a justgiving donation link.
+A website for displaying multiple teams progress along a route. Allowing each team to add there own progress in a seperate area
 
 
 # Things you need to use this
@@ -10,18 +10,18 @@ This website will not work out of the box. You will need to set up the following
 
 
 # Database structure
-Enter the details for accessing your MySQL databser anywhere in the php code you see "DB credentials".
+Enter the details for accessing your MySQL databse anywhere in the php code you see "DB credentials".
 
 accesskeys
-* columns: id, access_key,uas_name,tablename
-* description: this is the table of unique links for each team (access_key), the team name (uas_name) and the name of the table where their distances are to be saved
+* columns: id, access_key,team_name,table_name
+* description: this is the table of unique links for each team (access_key), the team name (team_name) and the name of the table where their distances are to be saved
 
 total_distances
-* columns: id,UAS,distance
+* columns: id,team,distance
 * description: one row for each team, this data is used to populate the leaderboard on the map page
 
 TEAM1table
-* columns: id,run_timestamp,runner_name,distance_km
+* columns: id,timestamp,runner_name,distance
 * description: For example this could be called TEAM1table (this would be named whatever you put in accesskeys as the tablename) the submitrun page form fills go to this table and update the distance in total_distance for that team. 
 
 # Usage

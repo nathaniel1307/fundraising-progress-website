@@ -10,7 +10,7 @@ $(document).ready(function() {
             //access_key: access_key, 
         },
         success: function(response){
-           // array of Teams and distances (data.team, and data.distance respectively)
+           // arrays of Teams, distances, colors (dat.team, and dat.distance respectively)
             var Teams_arr = [];
             var dist_arr = [];
             var colour_arr = [];
@@ -38,7 +38,7 @@ $(document).ready(function() {
                     colour_arr.push("grey");
                 }
             });
-
+            //Horizontal bar chart to act as leaderboard
             var myChart = new Chart(ctx, {
                 type: 'horizontalBar',
                 data: {
