@@ -10,7 +10,7 @@ $(document).ready(function() {
             //access_key: access_key, 
         },
         success: function(response){
-           // array of Teams and distances (data.team, and data.distance respectively)
+           // arrays of Teams, distances, colors (dat.team, and dat.distance respectively)
             var Teams_arr = [];
             var dist_arr = [];
             var colour_arr = [];
@@ -31,14 +31,18 @@ $(document).ready(function() {
                 }else if(dat.team === "Taurus Squadron"){
                     colour_arr.push("green");
                 }else if(dat.team === "Trojan Squadron"){
-                    colour_arr.push("darkorange")
+                    colour_arr.push("magenta")
                 }else if(dat.team === "Worldline & Friends"){
                     colour_arr.push("deepskyblue")
+                }else if(dat.team === "Looseheadz"){
+                    colour_arr.push("springgreen");
+                }else if(dat.team === "Crypt Runners"){
+                    colour_arr.push("darkorange");
                 }else{
                     colour_arr.push("grey");
                 }
             });
-
+            //Horizontal bar chart to act as leaderboard
             var myChart = new Chart(ctx, {
                 type: 'horizontalBar',
                 data: {

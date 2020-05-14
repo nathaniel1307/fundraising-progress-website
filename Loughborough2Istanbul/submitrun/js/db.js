@@ -102,12 +102,3 @@ $(document).ready(function() {
         });
     });
 });
-
-
-
-/* WORKING AJAX EXAMPLE
-$(document).ready(function() {
-    $('#example').DataTable( {
-        "ajax": '../dbtabletest/ajax/data/arrays.txt'
-    });
-}); */
