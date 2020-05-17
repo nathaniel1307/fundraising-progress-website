@@ -87,7 +87,7 @@ $(document).ready(function() {
                     colour_arr.push("darkviolet");
                 }else if (dat.team === "Gloucester Penguins"){
                     colour_arr.push("red");
-                }else if (dat.team === "Friends & Family"){
+                }else if (dat.team === "Team Ohana"){
                     colour_arr.push("yellow");
                 }else if(dat.team === "HMS Grimsby"){
                     colour_arr.push("navy");
