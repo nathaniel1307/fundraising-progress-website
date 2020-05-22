@@ -26,7 +26,16 @@
   width: 300px;
   z-index: 100;
   */
-
+@media screen and (max-width: 1300px) {
+  #distance {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+}
 
 
 h1 {
