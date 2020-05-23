@@ -5,7 +5,7 @@
 }
 
 
-@media screen and (max-width: 1800px) {
+@media screen and (max-width: 992px) {
   #distance {
     visibility: hidden;
     clear: both;
@@ -62,8 +62,8 @@ body {
 
 .distance-container {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 5px;
+  left: -25px;
   z-index: 1;    
 }
 
@@ -71,12 +71,12 @@ body {
   background-color: #fcfbff;
   border-radius: 2px;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
   z-index: 9000;
   max-width: 450px;
   
-  margin: 20px;
+  margin: 0px;
   padding: 20px;
   display: block;
 }
