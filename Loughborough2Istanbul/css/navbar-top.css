@@ -1,8 +1,9 @@
 /* Show it's not fixed to the top */
 body {
     min-height: 75rem;
-    background-image: url("../assets/ben.jpeg");
+    background-color: #333;
+    background-image: url("../assets/ben2.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
