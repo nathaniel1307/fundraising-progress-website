@@ -1,0 +1,8 @@
+/* Show it's not fixed to the top */
+body {
+    min-height: 75rem;
+    background-image: url("../assets/ben.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
