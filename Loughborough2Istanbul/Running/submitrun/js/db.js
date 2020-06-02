@@ -17,7 +17,7 @@ $(document).ready(function() {
         "searching": false,
         "paging": true,
         "ajax": {
-            "url": "./php/accessCycleTable.php",
+            "url": "./php/accesstable.php",
             "data": {
                 "access_key" : access_key
             }
@@ -36,9 +36,9 @@ $(document).ready(function() {
     const urlParams = new URLSearchParams(queryString);
     const access_key = urlParams.get('key');
 
-    $.ajax({    //create an ajax request to getCycleTeamData.php
+    $.ajax({    //create an ajax request to getTeamData.php
         type: "GET",
-        url: "./php/getCycleTeamData.php",
+        url: "./php/getTeamdata.php",
         dataType: "json",   //expect json to be returned
         data: { 
             access_key: access_key, 
@@ -83,7 +83,7 @@ $(document).ready(function() {
 
         $.ajax({    //create an ajax request to addCycle.php
             type: "GET",
-            url: "./php/addCycle.php",
+            url: "./php/addrun.php",
             dataType: "html",   //expect json to be returned
             data: {
                 access_key: access_key,
