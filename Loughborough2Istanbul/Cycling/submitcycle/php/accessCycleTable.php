@@ -20,7 +20,7 @@ $access_key = $_GET['access_key'];
 $host = 'localhost';
 $user = 'root';
 $pass = 'root';
-$db = 'Loughborough2Istanbul';
+$db = 'Loughborough2IstanbulCycle';
 
 
 // Connect to database

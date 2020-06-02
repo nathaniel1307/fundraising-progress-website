@@ -8,8 +8,7 @@ $access_key = $_GET['access_key'];
 $host = 'localhost';
 $user = 'root';
 $pass = 'root';
-$db = 'Loughborough2Istanbul';
-//$table = 'testdb';
+$db = 'Loughborough2IstanbulCycle';
 
 
 // Connect to database
@@ -40,7 +39,7 @@ $tablename = $row["table_name"];
 
 
 // DB request for runner data
-$sql = "SELECT DISTINCT cyclists_name FROM $tablename ORDER BY runner_name ASC"; // SQL with parameters
+$sql = "SELECT DISTINCT cyclists_name FROM $tablename ORDER BY cyclists_name ASC"; // SQL with parameters
 $stmt = $mysqli->prepare($sql);
 if ($stmt==false) {
     die("Database access failed check your URL, access key: $access_key, sql error: $mysqli->error");

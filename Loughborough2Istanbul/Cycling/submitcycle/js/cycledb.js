@@ -24,7 +24,7 @@ $(document).ready(function() {
         },
         "columns": [
             { "data": "timestamp" },
-            { "data": "runner_name" },
+            { "data": "cyclists_name" },
             { "data": "distance" }
         ]
     });
@@ -49,7 +49,7 @@ $(document).ready(function() {
             //alert(response);
             // Add options
             $.each(response.runners, function(i, item) {
-                $("#runnersSelect").append('<option>' + item.runner_name + '</option>');
+                $("#runnersSelect").append('<option>' + item.cyclists_name + '</option>');
             });
         }
     });

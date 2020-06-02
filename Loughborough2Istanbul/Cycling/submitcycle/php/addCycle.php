@@ -9,7 +9,7 @@ $run_dist_raw = $_GET['distance'];  // distance submitted
 $host = 'localhost';
 $user = 'root';
 $pass = 'root';
-$db = 'Loughborough2Istanbul';
+$db = 'Loughborough2IstanbulCycle';
 
 // Connect to database
 $mysqli = new mysqli($host,$user,$pass,$db);
