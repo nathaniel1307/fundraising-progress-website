@@ -139,7 +139,7 @@ $(document).ready(function() {
             // Progress markers for all the teams
             // Image: An image is loaded and added to the map.
 
-            map.loadImage("./assets/black.png", function (error, image) {
+            map.loadImage("../assets/black.png", function (error, image) {
                 if (error) throw error;
                 map.addImage("team1custom-marker", image);
                 map.addSource('geojson', {

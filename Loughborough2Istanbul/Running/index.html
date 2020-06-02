@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS (place before all other stylesheets) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Load local CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Mapbox -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet" />
+
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.js" integrity="sha256-nZaxPHA2uAaquixjSDX19TmIlbRNCOrf5HO1oHl5p70=" crossorigin="anonymous"></script>
+
+    <title>Loughborough to Istanbul</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166054193-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-166054193-1');
+    </script>
+
+
+
+</head>
+
+<body>
+
+<!-- container-fluid for a full width -->
+<div class="row">
+    <div class="col-12 no-gutter">
+        <div id="instructions-container-above-map" class="d-md-none m-3">
+            <h1>Loughborough to Istanbul Runners</h1>
+            View our teams progresses from Loughborough to Istanbul and back! Donate on our <a href="https://www.justgiving.com/crowdfunding/loughborough2istanbul">JustGiving Page</a>.
+            <div class="row my-1">
+                <div class="col-6 d-none d-lg-block">
+                    <img src="../assets/typhoon.png" height="80px" alt="Typhoon Logo">
+                </div>
+            </div>
+        </div>
+        <div id="map-container" class="map-container">
+            <div id="map"></div>
+
+            <div class="row">
+                <div id="distance" class="distance-container">
+                </div>
+
+                <div id="instructions-container-on-map" class="instructions-container d-none d-md-block">
+                    <h1>Loughborough to Istanbul Runners</h1>
+                    View our Teams progresses from Loughborough to Istanbul and back! Donate on our <a href="https://www.justgiving.com/crowdfunding/loughborough2istanbul">JustGiving Page</a>.<br>
+                    <div class="row my-1">
+                        <div class="col-6 d-none d-lg-block">
+                            <img src="../assets/L2I.png" height="80px" alt="LoughboroughtoIstanbul Logo">
+                        </div>
+
+                        <div class="col-6 d-none d-lg-block">
+                            <img src="../assets/papyrus.png" height="50px" alt="Papyrus Logo">
+                        </div>
+                        <!--
+                        <div class="col-6 d-none d-lg-block">
+                            <img src="assets/typhoon.png" height="80px" alt="Typhoon Logo">
+                        </div>
+                        -->
+                    </div>
+                </div>
+
+                <div id="justgiving" class="justgiving-container">
+                    <!--
+                    <div id="jg-widget-loughborough2istanbul-606"></div>
+                    <script>
+                        (function () {
+                            var id="jg-widget-loughborough2istanbul-606",
+                                doc = document,
+                                pfx=(window.location.toString().indexOf("https")==0)?"https":"http";
+                            var el=doc.getElementById(id);
+                            if(el){
+                                var js = doc.createElement('script');
+                                js.src = pfx + "://widgets.justgiving.com/fundraisingpage/loughborough2istanbul?enc=ZT1qZy13aWRnZXQtbG91Z2hib3JvdWdoMmlzdGFuYnVsLTYwNiZ3PTQwMCZiPWltYWdlLGRvbmF0ZSZpYj10aXRsZSxzdW1tYXJ5LHByb2dyZXNzLHJhaXNlZCx0YXJnZXQ%3D";
+                                el.parentNode.insertBefore(js, el);
+                            }})();
+                    </script>
+                    -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page Content -->
+<section class="py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+                <h2 class="font-weight-light">Leaderboard</h2>
+
+                <div class="chart-container">
+                    <canvas id="leaderboardChart"></canvas>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+<!-- Bootstrap Optional JavaScript, place near the end of the page -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
+
+<!-- Load Turf.js spatial analysis library  -->
+<script src="https://npmcdn.com/@turf/turf@5.1.6/turf.min.js"></script>
+<!-- Load local JS -->
+<script src="../Running/js/relayroute.js"></script>
+<script src="../Running/js/leaderboardchart.js"></script>
+</body>
+</html>
