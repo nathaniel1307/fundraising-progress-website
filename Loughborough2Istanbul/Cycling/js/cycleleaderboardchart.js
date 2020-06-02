@@ -19,19 +19,19 @@ $(document).ready(function() {
                 dist_arr.push(dat.distance);
                 //Colour Setting
                 if(dat.team === "Team Kharma"){
-                    colour_arr.push("darkviolet");
+                    colour_arr.push("#E6E6FA");
                 }else if (dat.team === "Team Kharma: Brompton Unit"){
-                    colour_arr.push("red");
+                    colour_arr.push("#D8BFD8");
                 }else if (dat.team === "Gloscycling Penguins"){
-                    colour_arr.push("yellow");
+                    colour_arr.push("#00FFFF");
                 }else if(dat.team === "PG Trips"){
-                    colour_arr.push("navy");
+                    colour_arr.push("#FFDB58");
                 }else if(dat.team === "Bike Club"){
-                    colour_arr.push("darkturquoise");
+                    colour_arr.push("#293352");
                 }else if(dat.team === "Loughborough Tri A"){
-                    colour_arr.push("green");
+                    colour_arr.push("#4B0082");
                 }else if(dat.team === "Loughborough Tri B"){
-                    colour_arr.push("magenta")
+                    colour_arr.push("#800080")
                 }else{
                     colour_arr.push("grey");
                 }
