@@ -2,9 +2,7 @@
 // script to get distance run by each Team so far (for leaderboard)
 
 // DB credentials
-$host = 'localhost';
-$user = 'root';
-$pass = 'root';
+include "../../DBCred.php";
 $db = 'Loughborough2IstanbulCycle';
 
 // Connect to database

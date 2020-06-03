@@ -6,9 +6,7 @@ $run_name_raw = $_GET['name']; // runner's full name
 $run_dist_raw = $_GET['distance'];  // distance submitted
 
 // DB credentials
-$host = 'localhost';
-$user = 'root';
-$pass = 'root';
+include "../../../DBCred.php";
 $db = 'Loughborough2IstanbulCycle';
 
 // Connect to database

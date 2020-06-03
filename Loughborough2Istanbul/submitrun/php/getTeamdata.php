@@ -5,11 +5,8 @@
 $access_key = $_GET['access_key'];
 
 // DB credentials
-$host = 'localhost';
-$user = 'root';
-$pass = 'root';
+include "../../DBCred.php";
 $db = 'Loughborough2Istanbul';
-//$table = 'testdb';
 
 
 // Connect to database

@@ -2,9 +2,7 @@
 // script to get total distance run so far
 
 // DB credentials
-$host = 'localhost';
-$user = 'root';
-$pass = 'root';
+include "../../DBCred.php";
 $db = 'Loughborough2Istanbul';
 
 // Connect to database
