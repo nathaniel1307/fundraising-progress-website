@@ -13,7 +13,7 @@
     <!-- Datatables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/r-2.2.3/datatables.min.css"/>
     
-    <title>Add a New Run</title>
+    <title>Add a New Cycle</title>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166054193-1"></script>
@@ -31,9 +31,9 @@
     <!-- Page Content -->
     <section class="py-4">
         <div class="container">
-            <h1 id="topheading" class="font-weight-light">Submit and View Runs</h1>
+            <h1 id="topheading" class="font-weight-light">Submit and View Cycles</h1>
             <div id="runaddedalert" class="alert alert-primary fade hide" role="alert">
-                Run successfully added! <a href="../Running" class="alert-link">View our progress on the map!</a>
+                Cycle successfully added! <a href="../" class="alert-link">View our progress on the map!</a>
             </div>
             <h3 id="kmwarning" class="font-weight-light" style="color: red; font-size: 20px">Please remember to enter your distance in Kilometers!</h3>
             <h5 id="dpwarning" class="font-weight-light" style="font-size: 15px">By submitting this form, you acknowledge that your Name, Distance and Timestamp will be stored by the site and may be visible to other users.</h5>
@@ -46,12 +46,12 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-6 offset-md-1">
                         <div class="form-group">
-                            <label for="runnersSelect">Select runner</label>
+                            <label for="runnersSelect">Select cyclist</label>
                             <select class="form-control" id="runnersSelect" required>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="runDistanceInput">Distance Run (km)</label>
+                            <label for="runDistanceInput">Distance Cycled (km)</label>
                             <input type="text" id="runDistanceInput" class="form-control" placeholder="e.g. 4.8" aria-label="Distance" aria-describedby="basic-addon2" required>
                         </div>
                         <button id="runsubmitbtn" type="submit" class="btn btn-primary btn-block mb-4">
@@ -64,7 +64,7 @@
                             <div class="card-body">
                                 <form class="form" role="form" autocomplete="off">
                                     <div class="form-group">
-                                        <label for="runnerNameInput">Add New Runner</label>
+                                        <label for="runnerNameInput">Add New Cyclist</label>
                                         <div class="input-group mb-3">
                                             <input type="text" id="runnerNameInput" class="form-control" placeholder="Full name" aria-label="Full name" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
@@ -95,14 +95,14 @@
                             <thead>
                                 <tr>
                                     <th>Time</th>
-                                    <th>Runner</th>
+                                    <th>Cyclist</th>
                                     <th>Distance</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Time</th>
-                                    <th>Runner</th>
+                                    <th>Cyclist</th>
                                     <th>Distance</th>
                                 </tr>
                             </tfoot>
@@ -131,6 +131,6 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/r-2.2.3/datatables.min.js"></script>
 
     <!-- Load local JS (after Datatables) -->
-    <script src="js/db.js"></script>
+    <script src="js/cycledb.js"></script>
 </body>
 </html>

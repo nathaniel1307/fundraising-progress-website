@@ -1,0 +1,10 @@
+/* Show it's not fixed to the top */
+body {
+    min-height: 75rem;
+    background-color: #333;
+    background-image: url("../assets/ben2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+

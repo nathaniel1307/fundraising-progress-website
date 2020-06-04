@@ -6,8 +6,8 @@ $run_name_raw = $_GET['name']; // runner's full name
 $run_dist_raw = $_GET['distance'];  // distance submitted
 
 // DB credentials
-include "../../DBCred.php";
-$db = 'Loughborough2Istanbul';
+include "../../../DBCred.php";
+$db = 'Loughborough2IstanbulCycle';
 
 // Connect to database
 $mysqli = new mysqli($host,$user,$pass,$db);
@@ -51,7 +51,7 @@ if (isset($run_dist_raw)) {
 date_default_timezone_set('Europe/London');
 $datetimeObj = new DateTime('now');
 $timestr =  $datetimeObj->format('Y-m-d H:i:s');
-$stmt = $mysqli->prepare("INSERT INTO $tablename(timestamp,runner_name,distance) VALUES ('$timestr','$run_name',$run_dist)");
+$stmt = $mysqli->prepare("INSERT INTO $tablename(timestamp,cyclists_name,distance) VALUES ('$timestr','$run_name',$run_dist)");
 $stmt->execute();
 $stmt->close();
 

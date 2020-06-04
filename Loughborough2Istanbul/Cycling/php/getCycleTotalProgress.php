@@ -1,11 +1,9 @@
 <?php
-// script to get distance run by each Team so far (for leaderboard)
+// script to get total distance run so far
 
 // DB credentials
-$host = 'localhost';
-$user = 'root';
-$pass = 'root';
-$db = 'Loughborough2Istanbul';
+include "../../DBCred.php";
+$db = 'Loughborough2IstanbulCycle';
 
 // Connect to database
 $mysqli = new mysqli($host,$user,$pass,$db);
@@ -15,17 +13,18 @@ if ($mysqli->connect_errno) {
     exit();
 }
 
-$sql = "SELECT team,distance FROM total_distances ORDER BY distance DESC";
+$sql = "SELECT SUM(distance) as total FROM total_distances";
 $stmt = $mysqli->prepare($sql);
 $stmt->execute(); // execute sql query
 $result = $stmt->get_result(); // get the mysqli result
 
-$data = $result->fetch_all(MYSQLI_ASSOC);
+$row = $result->fetch_assoc();
+$totaldist = round($row["total"], 1);
 
 // Assemble response
 $response = array(
-    "data" => $data // Team and distance data
-); 
+    "totaldist" => $totaldist
+);
 echo json_encode($response);
 
 $result->close();

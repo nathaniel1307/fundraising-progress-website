@@ -17,8 +17,8 @@ $access_key = $_GET['access_key'];
 
 
 // DB credentials
-include "../../DBCred.php";
-$db = 'Loughborough2Istanbul';
+include "../../../DBCred.php";
+$db = 'Loughborough2IstanbulCycle';
 
 
 // Connect to database
@@ -52,14 +52,14 @@ $tablename = $row["table_name"];
 // DB request for runner data
 // Sanitise input
 if (isset($sortColIndex)) {
-    $acceptableSortValues = array('timestamp', 'runner_name', 'distance');
+    $acceptableSortValues = array('timestamp', 'cyclists_name', 'distance');
     $sort = mysqli_real_escape_string($mysqli,$sortColData);
     if (!in_array($sortColData, $acceptableSortValues)) {
-        $sort = 'runner_name';
+        $sort = 'cyclists_name';
     }
 }
 else {
-    $sort = 'runner_name';
+    $sort = 'cyclists_name';
 }
 if (isset($sortOrder)) {
     if ($sortOrder == "asc") {
@@ -72,7 +72,7 @@ if (isset($sortOrder)) {
 else {
     $sortDir = 'ASC';
 }
-$sql = "SELECT timestamp, runner_name, distance FROM $tablename ORDER BY $sort $sortDir"; // SQL with parameters
+$sql = "SELECT timestamp, cyclists_name, distance FROM $tablename ORDER BY $sort $sortDir"; // SQL with parameters
 $stmt = $mysqli->prepare($sql);
 if ($stmt==false) {
     die("Database access failed check your URL, access key: $access_key, sql error: $mysqli->error");
